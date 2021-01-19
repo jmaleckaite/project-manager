@@ -8,13 +8,15 @@
     "@rails/webpacker": "4.3.0",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
-    "vue-loader": "^15.9.6",
     "vue-resource": "^1.5.1",
-    "vue-template-compiler": "^2.6.12",
     "vue-turbolinks": "^2.2.1"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
+    "vue-loader": "^14.2.4",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
   }
 }
