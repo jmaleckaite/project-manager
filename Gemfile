@@ -28,6 +28,7 @@ gem 'gravatar_image_tag'
 gem 'jquery-rails'
 gem 'wysiwyg-rails'
 gem 'public_activity'
+gem 'font-awesome-sass'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

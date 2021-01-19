@@ -48,5 +48,5 @@ require("channels")
 //= require plugins/video.min.js
 //= require_tree .
 document.addEventListener('turbolinks:load', () => {
-    $('#project_description').froalaEditor();
+  new FroalaEditor('#project_description'); 
   });
