@@ -13,14 +13,14 @@
 	</div>
 
 	<div class="column is-5" :class="{ datastatic: scrollPosition < 100, datafixed: scrollPosition > 100 }">
-		<h2 class="subtitle is-3">Team Name</h2>
-		<table class="table is-fullwidth">
+		<h2 class="subtitle is-3">{{ team.name }}</h2>
+		<table class="table is-fullwidth" v-if="team.users_attributes.length">
 			<thead>
 				<th>Name</th>
 				<th>Email</th>
 			</thead>
-			<tr>
-				<td>Username</td><td>User email</td>
+			<tr class="user" v-for="(user, index) in team.users_attributes">
+				<td>{{ user.name}}</td><td>{{ user.email}}</td>
 			</tr>
 			</table>
 		</div>
