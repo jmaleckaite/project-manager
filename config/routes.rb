@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :timesheets
   resources :projects
   resources :teams
   #when user confirms the account
