@@ -1,10 +1,11 @@
 class TimesheetsController < ApplicationController
   before_action :set_timesheet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # GET /timesheets
   # GET /timesheets.json
   def index
-    @timesheets = Timesheet.all
+    @timesheets = Timesheet.all.order("created_at DESC")
   end
 
   # GET /timesheets/1
@@ -14,7 +15,8 @@ class TimesheetsController < ApplicationController
 
   # GET /timesheets/new
   def new
-    @timesheet = Timesheet.new
+    @timesheet = current_user.timesheets.build
+    @user = current_user
   end
 
   # GET /timesheets/1/edit
@@ -24,15 +26,15 @@ class TimesheetsController < ApplicationController
   # POST /timesheets
   # POST /timesheets.json
   def create
-    @timesheet = Timesheet.new(timesheet_params)
+    @timesheet = current_user.timesheets.build(timesheet_params)
 
     respond_to do |format|
       if @timesheet.save
-        format.html { redirect_to @timesheet, notice: 'Timesheet was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Timesheet was successfully created.' }
         format.json { render :show, status: :created, location: @timesheet }
       else
         format.html { render :new }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
+        format.json { render json: @timesheet.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +48,7 @@ class TimesheetsController < ApplicationController
         format.json { render :show, status: :ok, location: @timesheet }
       else
         format.html { render :edit }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
+        format.json { render json: @timesheet.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +58,7 @@ class TimesheetsController < ApplicationController
   def destroy
     @timesheet.destroy
     respond_to do |format|
-      format.html { redirect_to timesheets_url, notice: 'Timesheet was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Timesheet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +71,6 @@ class TimesheetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def timesheet_params
-      params.require(:timesheet).permit(:date, :hours)
+      params.require(:timesheet).permit(:date, :hours, :project_id, :user_id)
     end
 end

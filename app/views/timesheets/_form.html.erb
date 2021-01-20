@@ -1,14 +1,22 @@
-
 <%= simple_form_for(@timesheet) do |f| %>
   <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :date %>
-    <%= f.input :hours %>
-  </div>
+	<% if !current_user.team_id.blank? %>
+   <div class="field">
+   	<div class="control">
+   		<%= f.input :date, input_html: { class: "input" }, wrapper: false, label_html: { class: "label"} %>
+   	</div>
+   </div>
+   <div class="field">
+   	<div class="control">
+   		<%= f.input :hours, input_html: { class: "input" }, wrapper: false, label_html: { class: "label"} %>
+     </div>
+   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+   <div class="field">
+   	<div class="control">
+   		<%= f.button :submit, class: "button is-link" %>
+   	</div>
+   </div>
+<% end %>
 <% end %>

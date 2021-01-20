@@ -3,6 +3,8 @@ class Project < ApplicationRecord
     belongs_to :team
     belongs_to :user
 
+    has_many :timesheets, dependent: :destroy
+
     #allows user to select and assign to the different team
     accepts_nested_attributes_for :team
 
