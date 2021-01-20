@@ -16,7 +16,7 @@ class TimesheetsController < ApplicationController
   # GET /timesheets/new
   def new
     @timesheet = current_user.timesheets.build
-    @user = current_user
+    @projects = Project.where('id = ?', current_user.team_id)
   end
 
   # GET /timesheets/1/edit
@@ -71,6 +71,6 @@ class TimesheetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def timesheet_params
-      params.require(:timesheet).permit(:date, :hours, :project_id, :user_id)
+      params.require(:timesheet).permit(:date, :hours, :project_id)
     end
 end

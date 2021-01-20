@@ -21,6 +21,18 @@
 				<div class="content">
 					<%= @project.description.html_safe %>
 				</div>
+				<hr />
+				<div class="content">
+				<% Timesheet.all.each do |timesheet| %>
+				<div class="content border-bottom pb4">
+					<p class="title is-4">
+						<%= timesheet.date %>
+						<%=  timesheet.hours %>
+						<%=  timesheet.user.name %>
+					</p>
+				</div>
+			<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
