@@ -1,5 +1,11 @@
 <%= simple_form_for(@timesheet) do |f| %>
-  <%= f.error_notification %>
+  <% if @timesheet.errors.any? %>
+<ul>
+  <% @timesheet.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
 
 	<% if !current_user.team_id.blank? %>
    <div class="field">

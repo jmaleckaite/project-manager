@@ -13,6 +13,7 @@
 					<div class="level-right">
 						<div class="buttons">
 							<%= link_to 'Edit Project', edit_project_path(@project), class:'button' %>
+							<%= link_to 'Add time entry', new_timesheet_path, class:'button is-primary is-light' %>
 							<%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure'}, class:'button is-danger is-outlined' %> 
 						</div>
 					</div>
@@ -25,10 +26,13 @@
 				<div class="content">
 				<% Timesheet.all.each do |timesheet| %>
 				<div class="content border-bottom pb4">
-					<p class="title is-4">
+					<p class="title is-6">
 						<%= timesheet.date %>
 						<%=  timesheet.hours %>
 						<%=  timesheet.user.name %>
+						<%= timesheet.project_id %>
+                        <%= link_to 'Edit', edit_timesheet_path(timesheet) %>
+						<%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %>
 					</p>
 				</div>
 			<% end %>
