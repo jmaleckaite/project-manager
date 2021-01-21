@@ -31,11 +31,8 @@
 					<%= timesheet.hours %>
 					<%= timesheet.user.name %>
 					<%= timesheet.project.name %>
-						<%#=  timesheet.hours %>
-						<%#=  timesheet.user.name %>
-						<%#= timesheet.project_id %>
-                        <%#= link_to 'Edit', edit_timesheet_path(timesheet) %>
-						<%#= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%= link_to 'Edit', edit_timesheet_path(timesheet) %>
+					<%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %>
 					</p>
 				</div>
 			<% end %>

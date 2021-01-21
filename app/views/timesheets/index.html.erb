@@ -7,6 +7,7 @@
     <tr>
       <th>Date</th>
       <th>Hours</th>
+      <th>Project</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= timesheet.date %></td>
         <td><%= timesheet.hours %></td>
+        <td><%= timesheet.project.name %></td>
         <td><%= link_to 'Show', timesheet %></td>
         <td><%= link_to 'Edit', edit_timesheet_path(timesheet) %></td>
         <td><%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

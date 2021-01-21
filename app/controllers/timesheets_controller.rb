@@ -16,12 +16,12 @@ class TimesheetsController < ApplicationController
   # GET /timesheets/new
   def new
     @timesheet = current_user.timesheets.build
-    @projects = Project.where('id = ?', current_user.team_id)
+    @projects = current_user.projects
   end
 
   # GET /timesheets/1/edit
   def edit
-   
+    @projects = current_user.projects
   end
 
   # POST /timesheets
