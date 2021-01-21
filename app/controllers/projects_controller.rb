@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   def new
     @project = current_user.projects.build
     @teams = Team.where('id = ?', current_user.team_id)
+   
   end
 
   # GET /projects/1/edit
@@ -71,6 +72,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:name, :description, :team_id)
+      params.require(:project).permit(:name, :description, :team_id, :timesheet_id)
     end
 end

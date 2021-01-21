@@ -24,15 +24,18 @@
 				</div>
 				<hr />
 				<div class="content">
-				<% Timesheet.all.each do |timesheet| %>
+				<% @project.timesheets.each do |timesheet| %>
 				<div class="content border-bottom pb4">
 					<p class="title is-6">
-						<%= timesheet.date %>
-						<%=  timesheet.hours %>
-						<%=  timesheet.user.name %>
-						<%= timesheet.project_id %>
-                        <%= link_to 'Edit', edit_timesheet_path(timesheet) %>
-						<%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<%= timesheet.date %>
+					<%= timesheet.hours %>
+					<%= timesheet.user.name %>
+					<%= timesheet.project.name %>
+						<%#=  timesheet.hours %>
+						<%#=  timesheet.user.name %>
+						<%#= timesheet.project_id %>
+                        <%#= link_to 'Edit', edit_timesheet_path(timesheet) %>
+						<%#= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %>
 					</p>
 				</div>
 			<% end %>
