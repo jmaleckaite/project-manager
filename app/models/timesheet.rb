@@ -7,17 +7,15 @@ class Timesheet < ApplicationRecord
    include PublicActivity::Model 
    tracked owner: Proc.new { |controller, model| controller.current_user }
 
-   def self.all_users
-      find_by_sql("SELECT user_id FROM timesheeets GROUP BY project_id").map(&:user_id).select {|x| x}
+  def self.search(search)
+   if search
+      timesheets = Timesheet.all
+      timesheets = Timesheets.where(date: search[:":date"][","])
+      return timesheets
+   else
+      Timesheet.all
    end
-
-   def self.select(user_id)
-      if user_id
-         find_all_by_user(user_id)
-      else
-         find :all
-      end
-   end
+end
 
 
 
