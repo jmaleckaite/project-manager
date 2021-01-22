@@ -36,8 +36,10 @@
 					<%= timesheet.hours %>
 					<%= timesheet.user.name %>
 					<%= timesheet.project.name %>
-                    <%= link_to 'Edit', edit_timesheet_path(timesheet) %>
-					<%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<div class="level-right">
+                    <%= link_to 'Edit', edit_timesheet_path(timesheet), class:'button' %>
+					<%= link_to 'Destroy', timesheet, method: :delete, data: { confirm: 'Are you sure?' }, class:'button is-danger is-outlined' %>
+					</div>
 					</p>
 				</div>
 			<% end %>
