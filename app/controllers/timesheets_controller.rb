@@ -5,20 +5,21 @@ class TimesheetsController < ApplicationController
   # GET /timesheets
   # GET /timesheets.json
   def index
-    @timesheets = Timesheet.all.order("created_at DESC")
-    
+    #@timesheets = Timesheet.all.order("created_at DESC")
+    @timesheets = Timesheet.search(params[:search])
   end
 
   # GET /timesheets/1
   # GET /timesheets/1.json
   def show
-    @timesheets = Timesheet.search(params[:timesheet])
+    #@timesheets = Timesheet.search(params[:timesheet])
   end
 
   # GET /timesheets/new
   def new
     @timesheet = current_user.timesheets.build
     @projects = current_user.projects
+    
   end
 
   # GET /timesheets/1/edit
@@ -74,6 +75,6 @@ class TimesheetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def timesheet_params
-      params.require(:timesheet).permit(:date, :hours, :project_id, :search)
+      params.require(:timesheet).permit(:date, :hours, :project_id, :user_id, :search)
     end
 end

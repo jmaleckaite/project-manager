@@ -7,18 +7,23 @@ class Timesheet < ApplicationRecord
    include PublicActivity::Model 
    tracked owner: Proc.new { |controller, model| controller.current_user }
 
-  def self.search(search)
-   if search
-      timesheets = Timesheet.all
-      timesheets = Timesheets.where(date: search[:":date"][","])
-      return timesheets
-   else
-      Timesheet.all
-   end
+   def self.search(search)
+      if search
+          user = User.find_by(name: search)
+          if user
+              self.where(user_id: user)
+          else
+              Timesheet.all
+          end
+      else
+          Timesheet.all
+      end
+  end
+
+
 end
 
 
 
   
     
-end
